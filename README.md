@@ -2,6 +2,51 @@
 
 A Flask-based REST and GraphQL API for Indian bank branch information.
 
+## Solution Approach
+
+### Time Taken
+- Total time: ~4-5 hours
+  - Initial setup and dependency resolution: 1 hour
+  - Database modeling and implementation: 1 hour
+  - API implementation (REST + GraphQL): 1.5 hours
+  - Testing and debugging: 1 hour
+  - Deployment and documentation: 30 minutes
+
+### Implementation Strategy
+
+1. **Technology Stack Selection**
+   - Flask as the web framework for its simplicity and flexibility
+   - SQLAlchemy for ORM to handle database operations
+   - GraphQL for flexible data querying
+   - PostgreSQL for production database
+   - Gunicorn as the production server
+   - Render for deployment
+
+2. **Database Design**
+   - Two main models: Bank and Branch
+   - Bank model with auto-incrementing IDs
+   - Branch model with IFSC as primary key
+   - Proper relationships between models
+   - Timestamp fields for tracking creation and updates
+
+3. **API Implementation**
+   - REST API endpoints for basic CRUD operations
+   - GraphQL endpoint for flexible querying
+   - Proper error handling and data validation
+   - Support for time-based queries
+
+4. **Testing Strategy**
+   - Unit tests for all API endpoints
+   - Test fixtures for database setup
+   - Coverage reporting
+   - Both REST and GraphQL endpoint testing
+
+5. **Deployment Strategy**
+   - Containerized deployment using Gunicorn
+   - Environment-based configuration
+   - Database migration handling
+   - Automatic test data seeding
+
 ## Live Demo
 
 The API is deployed at: [https://indian-banks-api-u5d0.onrender.com](https://indian-banks-api-u5d0.onrender.com)
@@ -126,3 +171,13 @@ The application will be available at `http://localhost:5000`
 - PostgreSQL
 - Gunicorn
 - Render (Deployment)
+
+## Future Improvements
+
+1. Add pagination for large result sets
+2. Implement caching for better performance
+3. Add more comprehensive error handling
+4. Add API documentation using Swagger/OpenAPI
+5. Add rate limiting
+6. Implement user authentication
+7. Add more advanced GraphQL features (mutations, subscriptions)
