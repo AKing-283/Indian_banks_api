@@ -18,7 +18,6 @@ A Flask-based REST and GraphQL API for Indian bank branch information.
    - Flask as the web framework for its simplicity and flexibility
    - SQLAlchemy for ORM to handle database operations
    - GraphQL for flexible data querying
-   - PostgreSQL for production database
    - Gunicorn as the production server
    - Render for deployment
 
@@ -168,7 +167,6 @@ The application will be available at `http://localhost:5000`
 - Flask
 - SQLAlchemy
 - GraphQL
-- PostgreSQL
 - Gunicorn
 - Render (Deployment)
 
