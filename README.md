@@ -1,77 +1,37 @@
 # Indian Banks API
 
-A Flask-based API service for Indian Banks data with both REST and GraphQL endpoints.
+A Flask-based REST and GraphQL API for Indian bank branch information.
 
-## Solution Overview
+## Live Demo
 
-### Time Taken
-- Total time: ~2 hours
-  - Setup and dependency resolution: 30 minutes
-  - Database modeling and initialization: 30 minutes
-  - API implementation: 45 minutes
-  - Testing and debugging: 15 minutes
-
-### Approach
-1. **Technology Stack Selection**
-   - Flask for the web framework
-   - SQLite for database (simpler setup than PostgreSQL)
-   - Flask-SQLAlchemy for ORM
-   - Flask-GraphQL for GraphQL support
-
-2. **Database Design**
-   - Two main models: Bank and Branch
-   - Bank model with auto-incrementing IDs
-   - Branch model with IFSC as primary key
-   - Proper relationships between models
-
-3. **API Implementation**
-   - REST API endpoints for basic CRUD operations
-   - GraphQL endpoint for flexible querying
-   - Proper error handling and data validation
-
-4. **Data Migration**
-   - CSV to SQLite conversion
-   - Batch processing for large datasets
-   - Error handling during data import
-
-## Project Structure
-```
-.
-├── app/
-│   ├── __init__.py      # Flask app initialization
-│   ├── models.py        # Database models
-│   ├── routes.py        # REST API endpoints
-│   └── graphql.py       # GraphQL schema
-├── init_db.py           # Database initialization script
-├── requirements.txt     # Project dependencies
-├── run.py              # Application entry point
-└── bank_branches.csv   # Source data
-```
+The API is deployed at: [https://indian-banks-api-u5d0.onrender.com](https://indian-banks-api-u5d0.onrender.com)
 
 ## API Endpoints
 
 ### REST API
-1. Get All Banks
-   ```
-   GET /api/banks
-   ```
 
-2. Get Bank Branches
-   ```
-   GET /api/banks/{bank_id}/branches
-   ```
-
-3. Get Branch Details
-   ```
-   GET /api/branches/{ifsc}
-   ```
-
-### GraphQL
+1. Get all banks:
 ```
-POST /gql
+GET https://indian-banks-api-u5d0.onrender.com/api/banks
 ```
 
-Example Query:
+2. Get branches for a specific bank:
+```
+GET https://indian-banks-api-u5d0.onrender.com/api/banks/{bank_id}/branches
+```
+
+3. Get a specific branch by IFSC:
+```
+GET https://indian-banks-api-u5d0.onrender.com/api/branches/{ifsc}
+```
+
+### GraphQL API
+
+GraphQL endpoint: `https://indian-banks-api-u5d0.onrender.com/gql`
+
+Example queries:
+
+1. Get all branches with bank information:
 ```graphql
 query {
   branches {
@@ -88,36 +48,81 @@ query {
 }
 ```
 
-## Setup Instructions
+2. Get all banks:
+```graphql
+query {
+  banks {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}
+```
 
-1. Create virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  
+## Testing the API
+
+### Using Postman
+
+1. REST API Testing:
+   - Set request method to GET
+   - Use the endpoints listed above
+   - No authentication required
+
+2. GraphQL Testing:
+   - Set request method to POST
+   - URL: `https://indian-banks-api-u5d0.onrender.com/gql`
+   - Headers: `Content-Type: application/json`
+   - Body (raw JSON):
+   ```json
+   {
+       "query": "query { branches { edges { node { branch bank { name } ifsc } } } }"
+   }
    ```
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Using Browser
 
-3. Initialize database:
-   ```bash
-   python init_db.py
-   ```
+1. For GraphQL testing:
+   - Visit `https://indian-banks-api-u5d0.onrender.com/gql`
+   - Use the GraphiQL interface to write and test queries
+
+2. For REST API testing:
+   - Simply paste the REST endpoints in your browser
+   - Example: `https://indian-banks-api-u5d0.onrender.com/api/banks`
+
+## Local Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/AKing-283/Indian_banks_api.git
+cd Indian_banks_api
+```
+
+2. Create and activate virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
 4. Run the application:
-   ```bash
-   python run.py
-   ```
+```bash
+python run.py
+```
 
-## Testing
-- Use Postman for REST API testing
-- Use GraphiQL interface at http://localhost:5000/gql for GraphQL testing
+The application will be available at `http://localhost:5000`
 
-## Future Improvements
-1. Add pagination for large result sets
-2. Implement caching for better performance
-3. Add more comprehensive error handling
-4. Add unit tests
-5. Add API documentation using Swagger/OpenAPI
+## Technologies Used
+
+- Flask
+- SQLAlchemy
+- GraphQL
+- PostgreSQL
+- Gunicorn
+- Render (Deployment)
