@@ -5,10 +5,12 @@ import os
 
 def init_db():
     with app.app_context():
-        # Drop all tables if they exist
-        db.drop_all()
-        
-        # Create tables
+        # Check if database already has data
+        if Bank.query.first() is not None:
+            print("Database already exists and has data. Skipping initialization.")
+            return
+
+        # Create tables if they don't exist
         db.create_all()
         
         # Read CSV file
@@ -56,10 +58,11 @@ def init_db():
             print("Database initialized successfully!")
 
 if __name__ == '__main__':
-    # Remove existing database file if it exists
+    # Check if database file exists
     db_path = os.path.join(os.path.dirname(__file__), 'app', 'indian_banks.db')
-    if os.path.exists(db_path):
-        os.remove(db_path)
-        print("Removed existing database file")
-    
-    init_db() 
+    if not os.path.exists(db_path):
+        print("Database file not found. Creating new database...")
+        init_db()
+    else:
+        print("Database file exists. Checking if initialization is needed...")
+        init_db() 
