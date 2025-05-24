@@ -5,12 +5,12 @@ A Flask-based REST and GraphQL API for Indian bank branch information.
 ## Solution Approach
 
 ### Time Taken
-- Total time: ~4-5 hours
+- Total time: ~7-8 hours
   - Initial setup and dependency resolution: 1 hour
-  - Database modeling and implementation: 1 hour
+  - Database modeling and implementation: 2 hour
   - API implementation (REST + GraphQL): 1.5 hours
   - Testing and debugging: 1 hour
-  - Deployment and documentation: 30 minutes
+  - Deployment and documentation: 2 hours
 
 ### Implementation Strategy
 
