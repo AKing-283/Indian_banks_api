@@ -205,3 +205,22 @@ Previously, the database initialization script (`init_db.py`) would recreate the
 5. Add rate limiting
 6. Implement user authentication
 7. Add more advanced GraphQL features (mutations, subscriptions)
+
+## API Deployment Issues and Local Success
+
+### Deployed API (Render) Issues
+- Some users may experience issues with POST and GET requests on the deployed API (e.g., timeouts, incomplete data, or slow responses).
+- This is often due to free-tier limitations or cold starts on platforms like Render.
+- If you encounter such issues, please try again after some time or consider running the API locally for best results.
+
+### Local API Success
+- All API endpoints (REST and GraphQL) work smoothly and quickly when run locally.
+- Local testing is highly recommended for development and learning.
+
+#### Example: Local GraphQL Query (Success)
+![Local GraphQL Query Success](./local_graphql_success.png)
+
+#### Example: Local REST GET Banks (Success)
+![Local REST GET Banks Success](./local_rest_get_banks_success.png)
+
+> _The above images show successful responses from local API testing using Postman._
