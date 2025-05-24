@@ -162,6 +162,32 @@ python run.py
 
 The application will be available at `http://localhost:5000`
 
+## Database Initialization
+
+### Issue and Solution
+
+Previously, the database initialization script (`init_db.py`) would recreate the database every time it was run, causing data loss. This has been fixed with the following improvements:
+
+1. **Smart Initialization**
+   - Database is only created if it doesn't exist
+   - Existing data is preserved between runs
+   - Initialization is skipped if data is already present
+
+2. **How to Use**
+   ```bash
+   # First time setup or if database is missing
+   python init_db.py
+   
+   # Subsequent runs will preserve existing data
+   python init_db.py
+   ```
+
+3. **Benefits**
+   - No accidental data loss
+   - Faster subsequent runs
+   - Safe to run multiple times
+   - Preserves existing data
+
 ## Technologies Used
 
 - Flask
